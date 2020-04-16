@@ -140,6 +140,19 @@ function add_new_team_memeber(){
 	$project_list = $this->load->view('list',$data);
 }
 
+//methd for fetching all reports
+
+function getAllReports(){
+	$this->load->model('Admin_model');
+
+	$AllReport_list = $this->Admin_model->getAllReports();
+	
+	$data = array();
+	$data['report_list'] = $AllReport_list;
+	$AllReport_list = $this->load->view('all_reportlist',$data);
+
+}
+
 }
 
 ?>

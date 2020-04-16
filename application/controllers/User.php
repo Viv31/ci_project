@@ -19,6 +19,7 @@ function index(){
 			$user = $this->User_model->userLogin($member_email,$member_password);
 			if(!empty($user)){
 				$this->session->set_userdata('member_email');
+				$this->session->set_userdata('id');
 				redirect(base_url().'index.php/user/all_users');
 
 			}
@@ -45,12 +46,17 @@ function all_users(){
 
 function TodaysReport(){
 	$this->load->model('User_model');
-	$Project_data['membersname'] = $this->User_model->getMembersName();
+	$Project_data['membersname'] = $this->User_model->getMembersName();//for fetching member name and project name on report insert page
 	$Project_data['projectssname'] = $this->User_model->GetProjectName();
 	$this->load->view('insert_report',$Project_data);
 }
 
 function insert_report(){
+	$this->load->model('User_model');
+
+}
+
+function all_reports(){
 
 }
 

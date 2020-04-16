@@ -57,6 +57,11 @@ class Admin_model extends CI_model
 
         return $query->result();
          }
+
+         function getAllReports(){
+         	return  $AllReport_list = $this->db->get('daily_report')->result_array();
+
+         }
 }
 
 ?>
