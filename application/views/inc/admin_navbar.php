@@ -31,6 +31,9 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url().'index.php/admin/all_projects';?>">All  Project</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url().'index.php/admin/getAllReports';?>">All  Reports</a>
+      </li>
 
  <li class="nav-item pull-right">
         <a href="logout.php" class="nav-link" >Logout</a>
