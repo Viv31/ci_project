@@ -3,9 +3,27 @@
 <head>
 	<title>All Projects</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap.min.css';?>">
+   <style type="text/css">
+    .container-fluid{
+      background-image: url(<?php echo base_url().'assets/img/emp2.jpg' ?>);
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      
+    }
+    #form_section{
+      background-color: rgba(0,0,0,0.7);
+      height: 300px;
+      padding: 10px;
+      margin-top: 50px;
+
+    }
+    
+  </style>
 </head>
 <body>
 	 <?php // include_once('inc/user_navbar.php'); ?>
+   <div class="container-fluid">
 	<div class="container">
 		<h2>All Projects</h2>
 		
@@ -53,5 +71,7 @@
 		</div>
 		
 	</div>
+</div>
+</div>
 </body>
 </html>

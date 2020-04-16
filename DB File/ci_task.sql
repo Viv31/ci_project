@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 11:05 AM
+-- Generation Time: Apr 16, 2020 at 05:50 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -55,6 +55,13 @@ CREATE TABLE `daily_report` (
   `Todaysdate` date NOT NULL,
   `work_description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `daily_report`
+--
+
+INSERT INTO `daily_report` (`id`, `project_name`, `assigned_to`, `status`, `Todaysdate`, `work_description`) VALUES
+(1, 3, 1, 'complete', '2020-04-16', 'completed following section \r\nadd new user \r\nuser login \r\nadmin login');
 
 -- --------------------------------------------------------
 
@@ -195,7 +202,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `daily_report`
 --
 ALTER TABLE `daily_report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `project`
