@@ -62,6 +62,41 @@ class Admin_model extends CI_model
          	return  $AllReport_list = $this->db->get('daily_report')->result_array();
 
          }
+
+         	//Get data for editing  into form section
+         function  GeteditUserdata($id){
+         	$this->db->where('id',$id);
+         	return $user = $this->db->get('team')->row_array(); //single row use row_array()
+
+         }
+
+         //updating records by admin
+         function UpdateUserbyAdmin($id,$updateData){
+         	$this->db->where('id',$id);
+         	$this->db->update('team',$updateData);
+         }
+
+
+         function GeteditProjectData($project_id){
+         	$this->db->where('id',$project_id);
+         	return $projectData = $this->db->get('project')->row_array();
+
+         }
+
+         //geeting project manager data
+         function updateManagerData($manager_id){
+         	$this->db->where('id',$manager_id);
+         	$this->db->update('team',$updateData);
+
+         }
+
+          function updateProjectData($project_id){
+          	$this->db->where('id',$project_id);
+         	$this->db->update('project',$updateData);
+         	
+         }
+
+
 }
 
 ?>

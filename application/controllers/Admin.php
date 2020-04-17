@@ -4,8 +4,11 @@
  */
 class Admin extends CI_controller
 {
+
 	
 	function index(){
+
+
 		$this->load->model('Admin_model');
 
 		$this->form_validation->set_rules('username','Username','required');
@@ -151,6 +154,66 @@ function getAllReports(){
 	$data['report_list'] = $AllReport_list;
 	$AllReport_list = $this->load->view('all_reportlist',$data);
 
+}
+
+
+//method for edit data
+function edit($id){
+	$this->load->model('Admin_model');
+	$user = $this->Admin_model->GeteditUserdata($id);
+	$data = array();
+	$data['user'] = $user; //storing response from model and storing in user variable
+
+		$this->form_validation->set_rules('member_name','Member Name','required');
+		$this->form_validation->set_rules('member_email','Email','required');
+
+		if($this->form_validation->run() == false){
+			$this->load->view('edit',$data);
+		}
+		else{
+			//Update records
+			$updateData = array();
+			$updateData['member_name'] = $this->input->post('member_name');
+			$updateData['member_email'] = $this->input->post('member_email');
+			$this->Admin_model->UpdateUserbyAdmin($id,$updateData);
+			$this->session->set_flashdata('success','Updated Sccessfully');
+			redirect(base_url().'index.php/admin/memberslist');
+
+		}
+
+
+		function editProjectManager($manager_id){
+			$this->load->model('Admin_model');
+			$user = $this->Admin_model->GeteditUserdata($manager_id);
+			
+			$this->load->view('edit_projectmanager_data');
+
+		}
+
+		function EditProjects($project_id){
+
+			$this->load->model('Admin_model');
+			$projectData = $this->Admin_model->GeteditProjectData($project_id);
+			$data = array();
+			$data['projectData'] = $projectData;
+			$this->load->view('edit_project_data',$data);
+			
+		}
+	
+
+}
+
+
+
+
+
+//method for delete data
+
+
+
+function logout(){
+	$this->session->unset_userdata('username');
+    return redirect(base_url().'index.php/admin/index');
 }
 
 }

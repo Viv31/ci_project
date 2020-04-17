@@ -37,7 +37,7 @@
       </li>
 
  <li class="nav-item pull-right">
-        <a href="logout.php" class="nav-link" >Logout</a>
+        <a href="<?php echo base_url().'index.php/admin/logout';?>" class="nav-link" >Logout</a>
       </li> 
 
       

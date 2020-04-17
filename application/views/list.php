@@ -59,15 +59,15 @@
         <td ><?php echo $ProjectData['assigned_to'];?></td>
         <td><?php echo $ProjectData['project_status'];?></td>
         <td>
-        	<a href="<?php echo base_url().'index.php/user/edit/'.$ProjectData['id']?>" class="btn btn-primary">Edit</a>
+        	<a href="<?php echo base_url().'index.php/admin/EditProjects/'.$ProjectData['id']?>" class="btn btn-primary">Edit</a>
         </td>
         	<td>
-            <a href="<?php echo base_url().'index.php/user/delete/'.$ProjectData['id']?>" class="btn btn-danger">Delete</a>
+            <a href="<?php echo base_url().'index.php/admin/delete/'.$ProjectData['id']?>" class="btn btn-danger">Delete</a>
         </td>
       </tr>
       <?php }} else {?>
       <tr>
-      	<td colspan="4">REcords Not Found</td>
+      	<td colspan="4">Records Not Found</td>
       </tr>
       <?php } ?>
     </tbody>

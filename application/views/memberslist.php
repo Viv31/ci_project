@@ -43,7 +43,7 @@
         <th>Sno<?php $sno='1'; ?></th>
         <th>Project Name</th>
         <th>Details</th>
-        <th>Assigned To</th>
+       
         
         <th>Edit</th>
         <th>Delete</th>
@@ -57,13 +57,13 @@
         <td><?php echo $sno++;?></td>
         <td><?php echo $Members['member_name']; ?></td>
         <td><?php echo $Members['member_email'];?></td>
-        <td ><?php echo $Members['member_password'];?></td>
+       
        
         <td>
-        	<a href="<?php echo base_url().'index.php/user/edit/'.$Members['id']?>" class="btn btn-primary">Edit</a>
+        	<a href="<?php echo base_url().'index.php/admin/edit/'.$Members['id']?>" class="btn btn-primary">Edit</a>
         </td>
         	<td>
-            <a href="<?php echo base_url().'index.php/user/delete/'.$Members['id']?>" class="btn btn-danger">Delete</a>
+            <a href="<?php echo base_url().'index.php/admin/delete/'.$Members['id']?>" class="btn btn-danger">Delete</a>
         </td>
       </tr>
       <?php }} else {?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Edit Team Member</title>
+	<title>Update Project Manager</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap.min.css';?>">
 	<style type="text/css">
 		.container-fluid{
@@ -22,14 +22,16 @@
 		}
 	</style>
 </head>
+
+
 <body>
 	<?php include_once('inc/admin_navbar.php'); ?>
 	<div class="container-fluid">
 	<div class="container">
-		<h2>Edit Team Member</h2>
+		<h2>Update Project Manager</h2>
 		<div class="row">
-			<div class = "col-md-6 mx-auto" id="form_section">
-			<form method="POST" action="<?php echo base_url().'index.php/admin/edit/'.$user['id'];?>">
+			<div class = "col-md-6 mx-auto">
+			<form method="POST" action="<?php echo base_url().'index.php/admin/add_project_manager';?>" id="form_section">
 				<!--  
 				Form Controller is user and method is create 
 
@@ -37,17 +39,20 @@
 				-->
 				
 					<div class="form-group">
-						<label>Member Name:</label>
-					<input type="text" name="member_name" id="member_name" value="<?php echo set_value('member_name',$user['member_name']); ?>" class="form-control">
-					<?php echo form_error('member_name'); ?>
+						<label>Project Manager Name:</label>
+					<input type="text" name="manager_name" id="email" value="<?php echo set_value('manager_name'); ?>" class="form-control">
+					<?php echo form_error('manager_name'); ?>
 					</div>
 					<div class="form-group">
 						<label>Email:</label>
-					<input type="email"  name="member_email" id="member_email" value="<?php echo set_value('member_email',$user['member_email']); ?>" class="form-control">
-					<?php echo form_error('member_email'); ?>
+					<textarea name="email" id="email" value="<?php echo set_value('email'); ?>" class="form-control"></textarea>
+					<?php echo form_error('email'); ?>
 					</div>
 					
-					
+					<div class="form-group">
+						<label>Password</label>
+						<input type="password" name="manger_password" value="<?php echo set_value('manger_password'); ?>"class="form-control">
+					</div>
 
 					<input type="submit" name ="update" value="Update" class="btn btn-primary">
 					
