@@ -8,7 +8,7 @@ class ProjectManger extends CI_controller{
 	
 		if($this->form_validation->run() == false){
 			
-			$this->load->view('manager_login');
+			$this->load->view('ProjectManager/manager_login');
 		}
 		else{
 			$email = $this->input->post('email');
@@ -37,14 +37,14 @@ class ProjectManger extends CI_controller{
 	
 	$data = array();
 	$data['project_list'] = $project_list;
-		$this->load->view('view_assigned_task',$data);
+		$this->load->view('ProjectManager/view_assigned_task',$data);
 	}
 
 	function Subtasks(){
 		$this->load->model('ProjectManager_model');
 		$Project_data['membersname'] = $this->ProjectManager_model->getMembersName();
 		$Project_data['projectssname'] = $this->ProjectManager_model->GetProjectName();
-		$this->load->view('create_subtask',$Project_data);
+		$this->load->view('ProjectManager/create_subtask',$Project_data);
 		
 
 	}
@@ -55,7 +55,7 @@ class ProjectManger extends CI_controller{
 		$this->form_validation->set_rules('subtask_description','Task Description','required');
 		$this->form_validation->set_rules('assigned_to','Team Member','required');
 		if($this->form_validation->run() == false){
-			$this->load->view('create_subtask');
+			$this->load->view('ProjectManager/create_subtask');
 		}
 		else{
 			$Data = array();
@@ -77,9 +77,14 @@ class ProjectManger extends CI_controller{
 	$data = array();
 	$data['SubTask_List'] = $Subtask_list;
 	 
-	$Subtask_list = $this->load->view('subtasklist',$data);
+	$Subtask_list = $this->load->view('ProjectManager/subtasklist',$data);
 		
 	}
+
+	function logout(){
+	$this->session->unset_userdata('username');
+    return redirect(base_url().'index.php/ProjectManger/index');
+}
 
 }
 

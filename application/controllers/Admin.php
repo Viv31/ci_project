@@ -15,7 +15,7 @@ class Admin extends CI_controller
 		$this->form_validation->set_rules('admin_password','Password','required');
 		if($this->form_validation->run() == false){
 
-		$this->load->view('admin_login');
+		$this->load->view('Admin/admin_login');
 
 		}
 		else{
@@ -44,7 +44,7 @@ function memberslist(){
 	$data = array();
 	$data['members_list'] = $members_list;
 	 
-	$members_list = $this->load->view('memberslist',$data);
+	$members_list = $this->load->view('Admin/memberslist',$data);
 }
 
 function projectmanager_list(){
@@ -54,7 +54,7 @@ function projectmanager_list(){
 	$Alldata = array();
 	$Alldata['manager_list'] = $manager_list; //would be same as model's variable
 	 
-	$manager_list = $this->load->view('projectmanagerlist',$Alldata);
+	$manager_list = $this->load->view('Admin/projectmanagerlist',$Alldata);
 }
 
 
@@ -64,7 +64,7 @@ function projectmanager_list(){
 		$this->form_validation->set_rules('email','Email','required');
 		$this->form_validation->set_rules('manger_password','Password','required');
 		if($this->form_validation->run() == false){
-			$this->load->view('add_project_manager');
+			$this->load->view('Admin/add_project_manager');
 		}
 		else{
 			$Data = array();
@@ -89,7 +89,7 @@ function add_new_team_memeber(){
 		$this->form_validation->set_rules('member_password','Password','required');
 	
 		if($this->form_validation->run() == false){
-			$this->load->view('add_new_team_memeber');
+			$this->load->view('Admin/add_new_team_memeber');
 		}
 		else{
 			$memberData = array();
@@ -113,7 +113,7 @@ function add_new_team_memeber(){
 		//$this->form_validation->set_rules('','','');
 		if($this->form_validation->run() == false){
 
-			$this->load->view('create',$data);
+			$this->load->view('Admin/create',$data);
 			//here $data variable containing the value of drop down values
 		}
 		else{
@@ -140,7 +140,7 @@ function add_new_team_memeber(){
 	
 	$data = array();
 	$data['project_list'] = $project_list;
-	$project_list = $this->load->view('list',$data);
+	$project_list = $this->load->view('Admin/list',$data);
 }
 
 //methd for fetching all reports
@@ -152,7 +152,7 @@ function getAllReports(){
 	
 	$data = array();
 	$data['report_list'] = $AllReport_list;
-	$AllReport_list = $this->load->view('all_reportlist',$data);
+	$AllReport_list = $this->load->view('Admin/all_reportlist',$data);
 
 }
 
@@ -168,7 +168,7 @@ function edit($id){
 		$this->form_validation->set_rules('member_email','Email','required');
 
 		if($this->form_validation->run() == false){
-			$this->load->view('edit',$data);
+			$this->load->view('Admin/edit',$data);
 		}
 		else{
 			//Update records
@@ -187,7 +187,7 @@ function edit($id){
 			$this->load->model('Admin_model');
 			$user = $this->Admin_model->GeteditUserdata($manager_id);
 			
-			$this->load->view('edit_projectmanager_data');
+			$this->load->view('Admin/edit_projectmanager_data');
 
 		}
 
@@ -197,17 +197,31 @@ function edit($id){
 			$projectData = $this->Admin_model->GeteditProjectData($project_id);
 			$data = array();
 			$data['projectData'] = $projectData;
-			$this->load->view('edit_project_data',$data);
-			
+
+			//
+			$this->form_validation->set_rules('project_name','Project Name','required');
+		$this->form_validation->set_rules('project_details','Project Details','required');
+		$this->form_validation->set_rules('assigned_to','Assigned','required');
+		$this->form_validation->set_rules('project_status','Project Status','required');
+
+		if($this->form_validation->run() == false){
+			$this->load->view('Admin/edit_project_data',$data);
+		}
+		else{
+			//Update records
+			$updateData = array();
+			$updateData['project_name'] = $this->input->post('project_name');
+			$updateData['project_details'] = $this->input->post('project_details');
+			$updateData['assigned_to'] = $this->input->post('assigned_to');
+			$updateData['project_status'] = $this->input->post('project_status');
+			$this->Admin_model->UpdateProject($project_id,$updateData);
+			$this->session->set_flashdata('success','Updated Sccessfully');
+			redirect(base_url().'index.php/Admin/all_projects');
+
+		}
+
 		}
 	
-
-}
-
-
-
-
-
 //method for delete data
 
 

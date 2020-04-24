@@ -96,6 +96,11 @@ class Admin_model extends CI_model
          	
          }
 
+    function UpdateProject($user_id,$updateData){
+            $this->db->where('id',$user_id);
+            $this->db->update('project',$updateData);
+
+         }
 
 }
 

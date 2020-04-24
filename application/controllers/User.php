@@ -10,7 +10,7 @@ function index(){
 	
 		if($this->form_validation->run() == false){
 			
-			$this->load->view('user_login');
+			$this->load->view('User/user_login');
 		}
 		else{
 			$member_email = $this->input->post('member_email');
@@ -41,14 +41,14 @@ function all_users(){
 	
 	$data = array();
 	$data['project_list'] = $project_list;
-	$project_list = $this->load->view('user_list',$data);
+	$project_list = $this->load->view('User/user_list',$data);
 }
 
 function TodaysReport(){
 	$this->load->model('User_model');
 	$Project_data['membersname'] = $this->User_model->getMembersName();//for fetching member name and project name on report insert page
 	$Project_data['projectssname'] = $this->User_model->GetProjectName();
-	$this->load->view('insert_report',$Project_data);
+	$this->load->view('User/insert_report',$Project_data);
 }
 
 function insert_report(){
@@ -73,15 +73,15 @@ $data['userdata'] = $userdata;
 		$this->form_validation->set_rules('project_status','Project Status','required');
 
 		if($this->form_validation->run() == false){
-			$this->load->view('edit_user_data',$data);
+			$this->load->view('User/edit_user_data',$data);
 		}
 		else{
 			//Update records
 			$updateData = array();
 			$updateData['project_name'] = $this->input->post('project_name');
 			$updateData['project_details'] = $this->input->post('project_details');
-			$updateData['assigned_to'] = $this->input->post('project_details');
-			$updateData['project_status'] = $this->input->post('project_details');
+			$updateData['assigned_to'] = $this->input->post('assigned_to');
+			$updateData['project_status'] = $this->input->post('project_status');
 			$this->User_model->UpdateUserbyUser($user_id,$updateData);
 			$this->session->set_flashdata('success','Updated Sccessfully');
 			redirect(base_url().'index.php/user/all_users');
@@ -94,8 +94,13 @@ $data['userdata'] = $userdata;
 
 function delete_user(){
 	$this->load->model('User_model');
-	$this->load->view('delete_user_data');
+	$this->load->view('User/delete_user_data');
 
+}
+
+function logout(){
+	$this->session->unset_userdata('username');
+    return redirect(base_url().'index.php/user/index');
 }
 
 
