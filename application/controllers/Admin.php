@@ -180,6 +180,7 @@ function edit($id){
 			redirect(base_url().'index.php/admin/memberslist');
 
 		}
+	}
 
 
 		function editProjectManager($manager_id){

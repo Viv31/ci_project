@@ -54,10 +54,10 @@
         <td ><?php echo $ProjectData['assigned_to'];?></td>
         <td><?php echo $ProjectData['project_status'];?></td>
         <td>
-        	<a href="<?php echo base_url().'index.php/user/edit/'.$ProjectData['id']?>" class="btn btn-primary">Edit</a>
+        	<a href="<?php echo base_url().'index.php/user/edit_user/'.$ProjectData['id']?>" class="btn btn-primary">Edit</a>
         </td>
         	<td>
-            <a href="<?php echo base_url().'index.php/user/delete/'.$ProjectData['id']?>" class="btn btn-danger">Delete</a>
+            <a href="<?php echo base_url().'index.php/user/delete_user/'.$ProjectData['id']?>" class="btn btn-danger">Delete</a>
         </td>
       </tr>
       <?php }} else {?>

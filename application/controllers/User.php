@@ -61,6 +61,43 @@ function all_reports(){
 }
 
 
+function edit_user($user_id){
+	$this->load->model('User_model');
+$userdata =	$this->User_model->GetEditUserData($user_id);
+$data = array();
+$data['userdata'] = $userdata;
+	
+		$this->form_validation->set_rules('project_name','Project Name','required');
+		$this->form_validation->set_rules('project_details','Project Details','required');
+		$this->form_validation->set_rules('assigned_to','Assigned','required');
+		$this->form_validation->set_rules('project_status','Project Status','required');
+
+		if($this->form_validation->run() == false){
+			$this->load->view('edit_user_data',$data);
+		}
+		else{
+			//Update records
+			$updateData = array();
+			$updateData['project_name'] = $this->input->post('project_name');
+			$updateData['project_details'] = $this->input->post('project_details');
+			$updateData['assigned_to'] = $this->input->post('project_details');
+			$updateData['project_status'] = $this->input->post('project_details');
+			$this->User_model->UpdateUserbyUser($user_id,$updateData);
+			$this->session->set_flashdata('success','Updated Sccessfully');
+			redirect(base_url().'index.php/user/all_users');
+
+		}
+
+
+
+}
+
+function delete_user(){
+	$this->load->model('User_model');
+	$this->load->view('delete_user_data');
+
+}
+
 
 }
 

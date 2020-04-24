@@ -33,6 +33,17 @@ class User_model extends CI_model{
 
          }
 
+      function  GetEditUserData($user_id){
+            $this->db->where('id',$user_id);
+            return $userdata = $this->db->get('project')->row_array(); //single row use row_array()
+         }
+
+         function UpdateUserbyUser($user_id,$updateData){
+            $this->db->where('id',$user_id);
+            $this->db->update('project',$updateData);
+
+         }
+
 	
 }
 
